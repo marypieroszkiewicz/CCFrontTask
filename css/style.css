@@ -1,0 +1,79 @@
+/* ----- COMMON ----- */
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+/* ----- TOOLTIP ----- */
+
+.tooltip {
+	display: flex;
+ 	justify-content: center;
+ 	align-items: center;
+ 	width: 100%;
+ 	height: 100vh;
+ 	font-size: 20px;
+}
+
+/* ---- Inny sposób na centrowanie elementu w pionie i w poziomie ----- */
+
+/*	.tooltip {
+		position: absolute;
+		margin: 0;
+		padding: 0;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%);
+	}
+*/
+
+.tooltip__container {
+	position: relative;
+	border-bottom: 2px dotted #FF0000;
+	cursor: help;
+}
+
+.tooltip__container::before,
+.tooltip__container::after {
+	position: absolute;
+	content: '';
+	opacity: 0;
+	transition: all 0.4s ease;
+}
+
+.tooltip__container::before {
+	border-width: 10px 8px 0 8px;
+	border-style: solid;
+	border-color: #ff5722 transparent transparent transparent;
+	top: -8px;
+	left: 20px;
+	transform: translateY(20px);
+}
+
+.tooltip__container::after {
+	content: attr(data-tooltip);
+	background: #ff5722;
+	color: #fff;
+	width: 190px;
+	font-size: 16px;
+	font-weight: 300;
+	top: -46px;
+	left: -80px;
+	padding: 10px;
+	border-radius: 5px;
+	letter-spacing: 1px;
+	transform: translateY(20px);
+}
+
+.tooltip__container:hover::before,
+.tooltip__container:hover::after {
+	opacity: 1;
+	transform: translateY(-2px);
+}
